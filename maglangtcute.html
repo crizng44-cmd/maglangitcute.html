@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///C:/Users/ay/OneDrive/Desktop/mcheaven.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criznelle Pizzeria</title>
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --accent: #ffb300;
+            --dark: #212121;
+            --light: #f9f9f9;
+            --gray: #757575;
+            --border: #e0e0e0;
+            --success: #388e3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.1s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .hero {
+            background: linear-gradient(135deg, #ff8a65, #ff5722);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* About Us Page */
+        .about-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .about-container h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .owners-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .owner-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 220px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .owner-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem auto;
+        }
+
+        /* Menu Page */
+        .menu-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .product-info {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            flex: 1;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            padding: 0.2rem 0.6rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .qty-input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            font-size: 0.9rem;
+            background: transparent;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .product-buttons .btn {
+            flex: 1;
+            padding: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        /* Cart Page */
+        .cart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .cart-table th {
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .cart-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-summary p {
+            font-size: 1.1rem;
+        }
+
+        .cart-summary .total-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        /* Checkout Page */
+        .checkout-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-option {
+            border: 1px solid var(--border);
+            padding: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .payment-option input {
+            display: none;
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background: #ffebee;
+            color: var(--primary);
+        }
+
+        .payment-info-box {
+            background: #fff3e0;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Auth Forms */
+        .auth-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .auth-container h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* History Page */
+        .history-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .order-card-history {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--light);
+        }
+
+        .order-header-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.3rem;
+        }
+
+        /* Contact Page */
+        .contact-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+            text-align: left;
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Modal Alerts */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .modal-box h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal-box p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions {
+                display: none !important;
+            }
+            .hamburger {
+                display: block;
+            }
+            .mobile-menu {
+                position: fixed;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
+            }
+            .mobile-menu.active {
+                transform: translateY(0);
+            }
+            .mobile-menu a, .mobile-menu button {
+                padding: 0.8rem 1.5rem;
+                text-decoration: none;
+                color: var(--dark);
+                font-weight: 500;
+                background: none;
+                border: none;
+                text-align: left;
+                font-size: 1rem;
+                cursor: pointer;
+            }
+            .mobile-menu a:hover, .mobile-menu button:hover {
+                background: var(--light);
+                color: var(--primary);
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+            .product-img {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a class="logo" onclick="navigateTo(&#39;home&#39;)">🍕 Criznelle Pizzeria</a>
+            <ul class="nav-links">
+                <li><a data-target="home" onclick="navigateTo(&#39;home&#39;)" class="active">Home</a></li>
+                <li><a data-target="about" onclick="navigateTo(&#39;about&#39;)" class="">About Us</a></li>
+                <li><a data-target="menu" onclick="navigateTo(&#39;menu&#39;)">Menu</a></li>
+                <li><a data-target="history" onclick="navigateTo(&#39;history&#39;)">History</a></li>
+                <li><a data-target="contact" onclick="navigateTo(&#39;contact&#39;)" class="">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="navigateTo(&#39;cart&#39;)">Cart (<span id="cart-count">0</span>)</button>
+                <div id="auth-buttons-container" style="display: flex;">
+                    <button class="btn" onclick="navigateTo(&#39;login&#39;)">Log In</button>
+                    <button class="btn btn-outline" onclick="navigateTo(&#39;signup&#39;)">Sign Up</button>
+                </div>
+                <div id="user-info-container" style="display: none; align-items: center; gap: 0.5rem;">
+                    <span id="user-greeting" style="font-weight: 500; font-size: 0.9rem;"></span>
+                    <button class="btn btn-outline" onclick="logoutUser()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Logout</button>
+                </div>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a onclick="navigateTo(&#39;home&#39;); toggleMobileMenu();">Home</a>
+            <a onclick="navigateTo(&#39;about&#39;); toggleMobileMenu();">About Us</a>
+            <a onclick="navigateTo(&#39;menu&#39;); toggleMobileMenu();">Menu</a>
+            <a onclick="navigateTo(&#39;history&#39;); toggleMobileMenu();">History</a>
+            <a onclick="navigateTo(&#39;contact&#39;); toggleMobileMenu();">Contact Us</a>
+            <a onclick="navigateTo(&#39;cart&#39;); toggleMobileMenu();">Cart (<span id="mobile-cart-count">0</span>)</a>
+            <div id="mobile-auth-container" style="display: flex; flex-direction: column;">
+                <a onclick="navigateTo(&#39;login&#39;); toggleMobileMenu();">Log In</a>
+                <a onclick="navigateTo(&#39;signup&#39;); toggleMobileMenu();">Sign Up</a>
+            </div>
+            <div id="mobile-user-container" style="display: none; flex-direction: column;">
+                <a style="color: var(--primary); font-weight: bold;" id="mobile-user-greeting"></a>
+                <a onclick="logoutUser(); toggleMobileMenu();">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>CRIZNELLE PIZZERIA</h1>
+                <p>“Freshly Baked, Made with Love.”</p>
+                <div class="hero-buttons">
+                    <button class="btn" style="background: white; color: var(--primary);" onclick="navigateTo(&#39;menu&#39;)">View Menu</button>
+                    <button class="btn btn-outline" style="border-color: white; color: white;" onclick="navigateTo(&#39;menu&#39;)">Order Now</button>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🔥 Freshly Baked</h3>
+                    <p>Made fresh to order with premium ingredients and hand-tossed crust.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Fast Delivery</h3>
+                    <p>Delivered hot and ready to enjoy right at your doorstep.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>❤️ Made with Love</h3>
+                    <p>Crafted meticulously by our passionate local owners.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about" class="page">
+            <div class="about-container">
+                <h2>About Criznelle Pizzeria</h2>
+                <p style="max-width: 600px; margin: 0 auto; color: var(--gray);">
+                    Welcome to Criznelle Pizzeria! We are dedicated to bringing authentic, delicious, and budget-friendly pizzas and treats straight to your tables. Every recipe is carefully made to ensure high quality and rich flavor in every single bite.
+                </p>
+                <h3 style="margin-top: 2rem; color: var(--dark);">Meet the Owners</h3>
+                <div class="owners-grid">
+                    <div class="owner-card">
+                        <div class="owner-avatar">👩‍🍳</div>
+                        <h4>Christine</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 0.3rem;">Co-Founder &amp; Head Baker</p>
+                    </div>
+                    <div class="owner-card">
+                        <div class="owner-avatar">👩‍🍳</div>
+                        <h4>Janelle</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray); margin-top: 0.3rem;">Co-Founder &amp; Operations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Page -->
+        <section id="menu" class="page">
+            <div class="menu-header">
+                <h2>Our Menu</h2>
+                <input type="text" class="search-bar" id="menuSearch" placeholder="Search products (e.g., Pepperoni, Coca-Cola, Cake)..." oninput="filterMenu()">
+                <div class="menu-tabs">
+                    <button class="tab-btn active" onclick="switchCategory(&#39;all&#39;)">All Items</button>
+                    <button class="tab-btn" onclick="switchCategory(&#39;Pizza&#39;)">Pizza</button>
+                    <button class="tab-btn" onclick="switchCategory(&#39;Drinks&#39;)">Drinks</button>
+                    <button class="tab-btn" onclick="switchCategory(&#39;Desserts&#39;)">Desserts</button>
+                </div>
+            </div>
+            <div class="menu-grid" id="menuGrid"><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1548369937-47519962c11a" alt="Classic Cheese Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Classic Cheese Pizza</div>
+                        <div class="product-desc">Freshly baked cheese pizza with rich melted mozzarella.</div>
+                        <div class="product-price">₱249</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(1, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-1" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(1, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(1, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(1, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1628840042765-356cda07504e" alt="Pepperoni Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Pepperoni Pizza</div>
+                        <div class="product-desc">Round pizza covered with savory pepperoni and melted cheese.</div>
+                        <div class="product-price">₱299</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(2, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-2" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(2, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(2, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(2, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1565299624946-b28f40a0ae38" alt="Hawaiian Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Hawaiian Pizza</div>
+                        <div class="product-desc">Classic combination featuring ham, juicy pineapple, and cheese.</div>
+                        <div class="product-price">₱299</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(3, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-3" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(3, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(3, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(3, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1593560708920-61dd98c46a4e" alt="Bacon &amp; Cheese Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Bacon &amp; Cheese Pizza</div>
+                        <div class="product-desc">Loaded with crispy bacon bits, double cheese, and toppings.</div>
+                        <div class="product-price">₱329</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(4, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-4" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(4, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(4, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(4, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1513104890138-7c749659a591" alt="Supreme Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Supreme Pizza</div>
+                        <div class="product-desc">Pepperoni, sausage, mushrooms, bell peppers, onions, and cheese.</div>
+                        <div class="product-price">₱349</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(5, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-5" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(5, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(5, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(5, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1565299585323-38d6b0865b47" alt="Chicken BBQ Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Chicken BBQ Pizza</div>
+                        <div class="product-desc">Grilled chicken chunks, rich BBQ sauce, onions, and melted cheese.</div>
+                        <div class="product-price">₱329</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(6, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-6" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(6, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(6, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(6, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1573821663912-569905455b1c" alt="Four Cheese Pizza" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Four Cheese Pizza</div>
+                        <div class="product-desc">A decadent blend of four different types of premium melted cheese.</div>
+                        <div class="product-price">₱349</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(7, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-7" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(7, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(7, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(7, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1554866585-cd94860890b7" alt="Coca-Cola" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Coca-Cola</div>
+                        <div class="product-desc">Chilled, refreshing bottled Coca-Cola soft drink.</div>
+                        <div class="product-price">₱60</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(8, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-8" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(8, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(8, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(8, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1625772299848-391b6a87d7b3" alt="Sprite" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Sprite</div>
+                        <div class="product-desc">Crisp and cool lemon-lime carbonated Sprite drink.</div>
+                        <div class="product-price">₱60</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(9, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-9" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(9, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(9, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(9, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1622483767028-3f66f32aef97" alt="Royal" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Royal</div>
+                        <div class="product-desc">Refreshing orange-flavored carbonated soft drink.</div>
+                        <div class="product-price">₱60</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(10, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-10" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(10, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(10, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(10, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1556679343-c7306c1976bc" alt="Iced Tea" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Iced Tea</div>
+                        <div class="product-desc">Glass of sweet iced tea infused with ice and fresh lemon.</div>
+                        <div class="product-price">₱70</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(11, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-11" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(11, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(11, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(11, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1621263764928-df1444c5e859" alt="Lemonade" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Lemonade</div>
+                        <div class="product-desc">Freshly prepared homemade lemonade with ice and lemon slices.</div>
+                        <div class="product-price">₱80</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(12, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-12" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(12, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(12, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(12, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1578985545062-69928b1d9587" alt="Chocolate Cake" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Chocolate Cake</div>
+                        <div class="product-desc">Rich, moist slice of decadent layered chocolate cake.</div>
+                        <div class="product-price">₱120</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(13, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-13" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(13, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(13, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(13, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1533134242443-d4fd215305ad" alt="Cheesecake" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Cheesecake</div>
+                        <div class="product-desc">Creamy, smooth New York style cheesecake slice.</div>
+                        <div class="product-price">₱140</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(14, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-14" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(14, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(14, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(14, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1606313564200-e75d5e30476c" alt="Brownie" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Brownie</div>
+                        <div class="product-desc">Fudgy, rich chocolate brownie baked to absolute perfection.</div>
+                        <div class="product-price">₱100</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(15, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-15" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(15, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(15, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(15, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1497034825429-c343d7c6a68f" alt="Ice Cream" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Ice Cream</div>
+                        <div class="product-desc">Delicious scoops of sweet premium ice cream served in a cup.</div>
+                        <div class="product-price">₱90</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(16, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-16" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(16, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(16, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(16, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="product-card">
+                    <img src="./maglangtcute_files/photo-1606312619070-d48b4c652a52" alt="Chocolate Lava Cake" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">Chocolate Lava Cake</div>
+                        <div class="product-desc">Warm chocolate cake with gooey, molten chocolate streaming inside.</div>
+                        <div class="product-price">₱150</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(17, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-17" value="1" readonly="">
+                                <button class="qty-btn" onclick="adjustQty(17, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(17, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(17, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart" class="page">
+            <div class="cart-container">
+                <h2>Your Shopping Cart</h2>
+                <div id="cartContent">
+                    <!-- Dynamic cart or empty message -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout" class="page">
+            <div class="checkout-container">
+                <h2>Checkout</h2>
+                <form id="checkoutForm" onsubmit="processCheckout(event)">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input type="text" class="form-control" id="chkName" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="tel" class="form-control" id="chkPhone" required="" placeholder="09XXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <textarea class="form-control" id="chkAddress" rows="3" required=""></textarea>
+                    </div>
+
+                    <h3 style="margin: 1.5rem 0 0.8rem 0; font-size: 1.1rem;">Select Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option selected" onclick="selectPayment(&#39;COD&#39;)">
+                            <input type="radio" name="payment" value="COD" checked=""> Cash on Delivery
+                        </label>
+                        <label class="payment-option" onclick="selectPayment(&#39;GCash&#39;)">
+                            <input type="radio" name="payment" value="GCash"> GCash
+                        </label>
+                        <label class="payment-option" onclick="selectPayment(&#39;Maya&#39;)">
+                            <input type="radio" name="payment" value="Maya"> Maya
+                        </label>
+                        <label class="payment-option" onclick="selectPayment(&#39;PayPal&#39;)">
+                            <input type="radio" name="payment" value="PayPal"> PayPal
+                        </label>
+                    </div>
+
+                    <div class="payment-info-box" id="paymentInfoBox">
+                        You will pay the total amount in cash when your order is delivered.
+                    </div>
+
+                    <div style="background: var(--light); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                        <p style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;"><span>Subtotal:</span> <span id="summarySubtotal">₱0</span></p>
+                        <p style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;"><span>Delivery Fee:</span> <span>₱50</span></p>
+                        <p style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; color: var(--primary);"><span>Total:</span> <span id="summaryTotal">₱0</span></p>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 0.9rem;">Place Order</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Order History Page -->
+        <section id="history" class="page">
+            <div class="history-container">
+                <h2>Order History</h2>
+                <div id="historyContent" style="margin-top: 1rem;">
+                    <div class="order-card-history">
+                        <div class="order-header-info">
+                            <span><strong>Order #:</strong> undefined</span>
+                            <span>8/13/2026</span>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.3rem;"><strong>Products:</strong> Pepperoni Pizza (x2)</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.3rem;"><strong>Total:</strong> ₱₱747.00 | <strong>Payment:</strong> undefined (undefined)</p>
+                        <p style="font-size: 0.9rem; color: var(--success);"><strong>Status:</strong> undefined</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Page -->
+        <section id="contact" class="page">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <p style="color: var(--gray);">Got questions, bulk orders, or feedback? Get in touch with us directly!</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span>📞</span> <strong>Phone:</strong> 09562677792
+                    </div>
+                    <div class="contact-item">
+                        <span>📘</span> <strong>Facebook (Crizylle):</strong> Crizylle Ng
+                    </div>
+                    <div class="contact-item">
+                        <span>📘</span> <strong>Facebook (Janelle):</strong> Janelle Banawa
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="page">
+            <div class="auth-container">
+                <h2>Log In</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required="">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Log In</button>
+                </form>
+                <div class="auth-switch">
+                    Don't have an account? <a onclick="navigateTo(&#39;signup&#39;)">Sign Up</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Page -->
+        <section id="signup" class="page">
+            <div class="auth-container">
+                <h2>Create Account</h2>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" id="signupName" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" id="signupEmail" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="signupPassword" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" id="signupConfirmPassword" required="">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Sign Up</button>
+                </form>
+                <div class="auth-switch">
+                    Already have an account? <a onclick="navigateTo(&#39;login&#39;)">Log In</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Modal Popup -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <h3 id="modalTitle">Authentication Required</h3>
+            <p id="modalMessage">Please log in or create an account before ordering.</p>
+            <button class="btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Menu Dataset with reliable web image URLs
+        const menuItems = [
+            { id: 1, name: "Classic Cheese Pizza", category: "Pizza", price: 249, desc: "Freshly baked cheese pizza with rich melted mozzarella.", img: "https://images.unsplash.com/photo-1548369937-47519962c11a?w=500&auto=format&fit=crop&q=80" },
+            { id: 2, name: "Pepperoni Pizza", category: "Pizza", price: 299, desc: "Round pizza covered with savory pepperoni and melted cheese.", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&auto=format&fit=crop&q=80" },
+            { id: 3, name: "Hawaiian Pizza", category: "Pizza", price: 299, desc: "Classic combination featuring ham, juicy pineapple, and cheese.", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=80" },
+            { id: 4, name: "Bacon & Cheese Pizza", category: "Pizza", price: 329, desc: "Loaded with crispy bacon bits, double cheese, and toppings.", img: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=500&auto=format&fit=crop&q=80" },
+            { id: 5, name: "Supreme Pizza", category: "Pizza", price: 349, desc: "Pepperoni, sausage, mushrooms, bell peppers, onions, and cheese.", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=80" },
+            { id: 6, name: "Chicken BBQ Pizza", category: "Pizza", price: 329, desc: "Grilled chicken chunks, rich BBQ sauce, onions, and melted cheese.", img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&auto=format&fit=crop&q=80" },
+            { id: 7, name: "Four Cheese Pizza", category: "Pizza", price: 349, desc: "A decadent blend of four different types of premium melted cheese.", img: "https://images.unsplash.com/photo-1573821663912-569905455b1c?w=500&auto=format&fit=crop&q=80" },
+            
+            { id: 8, name: "Coca-Cola", category: "Drinks", price: 60, desc: "Chilled, refreshing bottled Coca-Cola soft drink.", img: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500&auto=format&fit=crop&q=80" },
+            { id: 9, name: "Sprite", category: "Drinks", price: 60, desc: "Crisp and cool lemon-lime carbonated Sprite drink.", img: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=500&auto=format&fit=crop&q=80" },
+            { id: 10, name: "Royal", category: "Drinks", price: 60, desc: "Refreshing orange-flavored carbonated soft drink.", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80" },
+            { id: 11, name: "Iced Tea", category: "Drinks", price: 70, desc: "Glass of sweet iced tea infused with ice and fresh lemon.", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop&q=80" },
+            { id: 12, name: "Lemonade", category: "Drinks", price: 80, desc: "Freshly prepared homemade lemonade with ice and lemon slices.", img: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&auto=format&fit=crop&q=80" },
+
+            { id: 13, name: "Chocolate Cake", category: "Desserts", price: 120, desc: "Rich, moist slice of decadent layered chocolate cake.", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&auto=format&fit=crop&q=80" },
+            { id: 14, name: "Cheesecake", category: "Desserts", price: 140, desc: "Creamy, smooth New York style cheesecake slice.", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&auto=format&fit=crop&q=80" },
+            { id: 15, name: "Brownie", category: "Desserts", price: 100, desc: "Fudgy, rich chocolate brownie baked to absolute perfection.", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=80" },
+            { id: 16, name: "Ice Cream", category: "Desserts", price: 90, desc: "Delicious scoops of sweet premium ice cream served in a cup.", img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&auto=format&fit=crop&q=80" },
+            { id: 17, name: "Chocolate Lava Cake", category: "Desserts", price: 150, desc: "Warm chocolate cake with gooey, molten chocolate streaming inside.", img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=500&auto=format&fit=crop&q=80" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('criznelle_cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('criznelle_orders')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('criznelle_current_user')) || null;
+        let currentCategory = 'all';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMenu();
+            updateCartUI();
+            updateAuthUI();
+            renderHistory();
+        });
+
+        function navigateTo(pageId) {
+            if ((pageId === 'cart' || pageId === 'checkout' || pageId === 'history') && !currentUser) {
+                showModal("Authentication Required", "Please log in or create an account before ordering.");
+                pageId = 'login';
+            }
+
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if(a.getAttribute('data-target') === pageId) {
+                    a.classList.add('active');
+                }
+            });
+
+            window.scrollTo(0, 0);
+
+            if (pageId === 'cart') {
+                renderCartPage();
+            } else if (pageId === 'checkout') {
+                prepareCheckout();
+            } else if (pageId === 'history') {
+                renderHistory();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('customModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.remove('active');
+        }
+
+        function renderMenu(itemsToRender = menuItems) {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+
+            if(itemsToRender.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--gray); padding: 2rem;">No products found.</p>`;
+                return;
+            }
+
+            itemsToRender.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-title">${item.name}</div>
+                        <div class="product-desc">${item.desc}</div>
+                        <div class="product-price">₱${item.price}</div>
+                        <div class="product-actions">
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="adjustQty(${item.id}, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-${item.id}" value="1" readonly>
+                                <button class="qty-btn" onclick="adjustQty(${item.id}, 1)">+</button>
+                            </div>
+                            <div class="product-buttons">
+                                <button class="btn btn-outline" onclick="addToCart(${item.id}, false)">Add to Cart</button>
+                                <button class="btn" onclick="addToCart(${item.id}, true)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function adjustQty(id, change) {
+            const input = document.getElementById(`qty-${id}`);
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            if (val > 99) val = 99;
+            input.value = val;
+        }
+
+        function switchCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            filterMenu();
+        }
+
+        function filterMenu() {
+            const searchInput = document.getElementById('menuSearch');
+            const query = searchInput ? searchInput.value.toLowerCase() : '';
+            let filtered = menuItems;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(i => i.category === currentCategory);
+            }
+
+            if (query.trim() !== '') {
+                filtered = filtered.filter(i => i.name.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query));
+            }
+
+            renderMenu(filtered);
+        }
+
+        function addToCart(id, directCheckout = false) {
+            if (!currentUser) {
+                showModal("Account Required", "Please log in or create an account before ordering.");
+                navigateTo('login');
+                return;
+            }
+
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+            const product = menuItems.find(i => i.id === id);
+
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ ...product, qty });
+            }
+
+            saveCart();
+            updateCartUI();
+
+            if (directCheckout) {
+                navigateTo('checkout');
+            } else {
+                showModal("Success", `${product.name} (${qty}) added to your cart successfully!`);
+            }
+        }
+
+        function updateCartQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                saveCart();
+                updateCartUI();
+                renderCartPage();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+            updateCartUI();
+            renderCartPage();
+        }
+
+        function saveCart() {
+            localStorage.setItem('criznelle_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
+            const cartCountEl = document.getElementById('cart-count');
+            const mobileCartCountEl = document.getElementById('mobile-cart-count');
+            
+            if (cartCountEl) cartCountEl.innerText = totalCount;
+            if (mobileCartCountEl) mobileCartCountEl.innerText = totalCount;
+        }
+
+        function renderCartPage() {
+            const container = document.getElementById('cartContent');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <p>Your shopping cart is currently empty.</p>
+                        <button class="btn" style="margin-top: 1rem;" onclick="navigateTo('menu')">Browse Menu</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let subtotal = 0;
+            let html = `
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            cart.forEach(item => {
+                let itemSubtotal = item.price * item.qty;
+                subtotal += itemSubtotal;
+                html += `
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <img src="${item.img}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                                <span>${item.name}</span>
+                            </div>
+                        </td>
+                        <td>₱${item.price}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <button class="btn btn-outline" style="padding: 0.1rem 0.4rem; font-size: 0.7rem;" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="btn btn-outline" style="padding: 0.1rem 0.4rem; font-size: 0.7rem;" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td>₱${itemSubtotal}</td>
+                        <td><button class="btn" style="background: #d32f2f; padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="removeFromCart(${item.id})">Remove</button></td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+                <div class="cart-summary">
+                    <p>Subtotal: ₱${subtotal}</p>
+                    <p class="total-price">Total: ₱${subtotal}</p>
+                    <button class="btn" onclick="navigateTo('checkout')" style="padding: 0.8rem 2rem; margin-top: 0.5rem;">Proceed to Checkout</button>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        let selectedPaymentMethod = "COD";
+
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('selected');
+                const radio = event.currentTarget.querySelector('input');
+                if(radio) radio.checked = true;
+            }
+
+            const infoBox = document.getElementById('paymentInfoBox');
+            if (method === 'COD') {
+                infoBox.innerText = "You will pay the total amount in cash when your order is delivered.";
+            } else if (method === 'GCash') {
+                infoBox.innerText = "Demo GCash Payment: Scan QR or transfer to 09562677792 (Criznelle P.). Your order will process instantly upon confirmation.";
+            } else if (method === 'Maya') {
+                infoBox.innerText = "Demo Maya Payment: Send payment to Maya account 09562677792. Simulated approval active.";
+            } else if (method === 'PayPal') {
+                infoBox.innerText = "Demo PayPal Payment: Secure payment gateway simulation active for Criznelle Pizzeria.";
+            }
+        }
+
+        function prepareCheckout() {
+            if (cart.length === 0) {
+                navigateTo('menu');
+                return;
+            }
+            if (currentUser) {
+                document.getElementById('chkName').value = currentUser.name || '';
+                document.getElementById('chkPhone').value = currentUser.phone || '';
+            }
+            let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('summarySubtotal').innerText = `₱${subtotal}`;
+            document.getElementById('summaryTotal').innerText = `₱${subtotal + 50}`;
+        }
+
+        function processCheckout(event) {
+            event.preventDefault();
+            let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            let total = subtotal + 50;
+
+            const newOrder = {
+                orderNo: "CZ-" + Math.floor(100000 + Math.random() * 900000),
+                date: new Date().toLocaleString(),
+                items: [...cart],
+                total: total,
+                paymentMethod: selectedPaymentMethod,
+                paymentStatus: selectedPaymentMethod === 'COD' ? 'Pending (COD)' : 'Paid (Demo)',
+                orderStatus: 'Preparing'
+            };
+
+            orders.unshift(newOrder);
+            localStorage.setItem('criznelle_orders', JSON.stringify(orders));
+
+            cart = [];
+            saveCart();
+            updateCartUI();
+
+            showModal("Success!", "Order placed successfully! Thank you for ordering from Criznelle Pizzeria.");
+            navigateTo('history');
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContent');
+            if (!container) return;
+            if (orders.length === 0) {
+                container.innerHTML = `<p style="color: var(--gray); text-align: center; padding: 2rem;">No previous orders found.</p>`;
+                return;
+            }
+
+            let html = '';
+            orders.forEach(o => {
+                let itemsList = o.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+                html += `
+                    <div class="order-card-history">
+                        <div class="order-header-info">
+                            <span><strong>Order #:</strong> ${o.orderNo}</span>
+                            <span>${o.date}</span>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.3rem;"><strong>Products:</strong> ${itemsList}</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.3rem;"><strong>Total:</strong> ₱${o.total} | <strong>Payment:</strong> ${o.paymentMethod} (${o.paymentStatus})</p>
+                        <p style="font-size: 0.9rem; color: var(--success);"><strong>Status:</strong> ${o.orderStatus}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showModal("Error", "Passwords do not match. Please try again.");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('criznelle_users')) || [];
+            if (users.find(u => u.email === email)) {
+                showModal("Error", "An account with this email already exists.");
+                return;
+            }
+
+            users.push({ name, email, password });
+            localStorage.setItem('criznelle_users', JSON.stringify(users));
+
+            showModal("Success", "Account created successfully! Please log in.");
+            navigateTo('login');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            let users = JSON.parse(localStorage.getItem('criznelle_users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (!user) {
+                showModal("Login Failed", "Incorrect email or password. Please try again.");
+                return;
+            }
+
+            currentUser = user;
+            localStorage.setItem('criznelle_current_user', JSON.stringify(currentUser));
+            updateAuthUI();
+            showModal("Welcome", `Logged in successfully as ${currentUser.name}!`);
+            navigateTo('menu');
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('criznelle_current_user');
+            updateAuthUI();
+            showModal("Logged Out", "You have been logged out successfully.");
+            navigateTo('home');
+        }
+
+        function updateAuthUI() {
+            const authContainer = document.getElementById('auth-buttons-container');
+            const userContainer = document.getElementById('user-info-container');
+            const greeting = document.getElementById('user-greeting');
+
+            const mobileAuth = document.getElementById('mobile-auth-container');
+            const mobileUser = document.getElementById('mobile-user-container');
+            const mobileGreeting = document.getElementById('mobile-user-greeting');
+
+            if (currentUser) {
+                if (authContainer) authContainer.style.display = 'none';
+                if (userContainer) userContainer.style.display = 'flex';
+                if (greeting) greeting.innerText = `Hi, ${currentUser.name.split(' ')[0]}`;
+
+                if (mobileAuth) mobileAuth.style.display = 'none';
+                if (mobileUser) mobileUser.style.display = 'flex';
+                if (mobileGreeting) mobileGreeting.innerText = `Hello, ${currentUser.name}`;
+            } else {
+                if (authContainer) authContainer.style.display = 'flex';
+                if (userContainer) userContainer.style.display = 'none';
+
+                if (mobileAuth) mobileAuth.style.display = 'flex';
+                if (mobileUser) mobileUser.style.display = 'none';
+            }
+        }
+    </script>
+
+</body></html>
